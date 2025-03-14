@@ -30,11 +30,11 @@ class UserViewSet(viewsets.ViewSet):
         """
 
         if self.action in ['register', 'login']:
-            permission_classes = [AllowAny]  # Open for all users
+            permission_classes = [AllowAny] 
         elif self.action in ['list', 'destroy']:  
-            permission_classes = [IsAdminUser]  # Only admins can list or delete users
+            permission_classes = [IsAdminUser] 
         else:
-            permission_classes = [IsAuthenticated]  # Users must be authenticated
+            permission_classes = [IsAuthenticated]  
         return [permission() for permission in permission_classes]
 
     @action(detail=False, methods=['post'],authentication_classes=[])
@@ -373,7 +373,7 @@ class CommentViewSet(viewsets.ViewSet):
         if  self.action in ['list', 'retrieve','create']:
             permission_classes = [IsAuthenticated, IsProjectOrTaskMember]
         elif self.action in ['update', 'partial_update', 'destroy']:
-            permission_classes = [IsAuthenticated]  # Additional logic in perform_update/destroy
+            permission_classes = [IsAuthenticated]  
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
