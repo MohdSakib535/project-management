@@ -1,0 +1,107 @@
+# Project Management System
+
+A Django REST Framework-based project management system for handling users, projects, tasks, and comments with JWT authentication.
+
+## Features
+
+- User Registration and Login (with JWT authentication)
+- Project Creation and Management
+- Task Assignment and Status Tracking
+- Project Member Roles (Admin, Member)
+- Comment System for Tasks
+- User CRUD operations with role-based permissions
+
+## Technologies Used
+
+- Python (Django, Django REST Framework)
+- PostgreSQL/MySQL (or any Django-supported database)
+- JWT Authentication (with `djangorestframework-simplejwt`)
+
+## Installation and Setup
+
+```bash
+# 1. Clone the repository
+git clone <repository_url>
+cd project-management-system
+
+# 2. Set up a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+
+# 4. Apply database migrations
+python manage.py migrate
+
+# 5. Create a superuser
+python manage.py createsuperuser
+
+# 6. Run the development server
+python manage.py runserver
+
+Access the API at: http://localhost:8000/
+```
+
+## API Endpoints
+
+### Authentication
+
+- `POST /api/users/register/` - Register a new user
+- `POST /api/users/login/` - Authenticate and get JWT tokens
+
+### User Management
+
+- `GET /api/users/{id}/` - Retrieve user details
+- `PATCH/PUT /api/users/{id}/` - Update user details
+- `DELETE /api/users/{id}/` - Delete user (Admin only)
+
+### Projects
+
+- `POST /api/projects/` - Create a project
+- `GET /api/projects/` - List projects for (current user)
+- `GET /api/projects/all/` - Retrieve all projects (Authenticated users)
+- `GET /api/projects/{project_id}/` - Retrieve project details (Owner or member)
+- `PATCH /api/projects/{project_id}/` - Update project (Owner only)
+- `DELETE /api/projects/{project_id}/` - Delete project (Owner only)
+- `POST /api/projects/{project_id}/add_member/` - Add a member to a project (Owner or Admin only)
+
+### Tasks
+
+- `POST /api/projects/{project_id}/tasks/` - Create a task within a project (Project members only)
+- `GET /api/projects/{project_id}/tasks/` - List tasks for a project (Project members only)
+- `GET /api/tasks/{task_id}/` - Retrieve task details (Project members only)
+- `PATCH /api/projects/{project_id}/tasks/{task_id}/` - Update task (Project members only)
+- `DELETE /api/projects/{project_id}/tasks/{task_id}/` - Delete task (Admin or Project owner only)
+
+### Comments
+
+- `POST /api/tasks/{task_id}/comments/` - Add a comment to a task (Project members only)
+- `GET /api/tasks/{task_id}/comments/` - List comments for a task (Project members only)
+- `GET /api/comments/{comment_id}/` - Retrieve comment details (Project members only)
+- `PATCH /api/tasks/{task_id}/comments/{comment_id}/` - Update a comment (Comment owner only)
+- `DELETE /api/tasks/{task_id}/comments/{comment_id}/` - Delete a comment (Comment owner only)
+
+
+
+
+# import json file in postman  collection of all request
+project management.postman_collection.json
+
+
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature-name`)
+3. Commit your changes (`git commit -m 'Add feature'`)
+4. Push to your branch (`git push origin feature-name`)
+5. Create a Pull Request
+
+## License
+
+MIT License
+
+
+Created by Mohd Sakib
