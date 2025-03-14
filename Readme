@@ -14,7 +14,7 @@ A Django REST Framework-based project management system for handling users, proj
 ## Technologies Used
 
 - Python (Django, Django REST Framework)
-- PostgreSQL/MySQL (or any Django-supported database)
+- Default sqlite database
 - JWT Authentication (with `djangorestframework-simplejwt`)
 
 ## Installation and Setup
